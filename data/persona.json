@@ -1,0 +1,920 @@
+{
+  "subject": "User 1",
+  "message_count_analyzed": 98079,
+  "habits": [
+    {
+      "label": "I love dogs",
+      "count": 219,
+      "evidence": [
+        "That's awesome! I love dogs. Do you have a picture of him? I love going to the skatepark too.",
+        "I love dogs! I have a golden retriever named Luna.",
+        "Nice, I love dogs. I have one myself but he's a little old to go to the park anymore.",
+        "Oh, that sounds like fun! I love dogs.",
+        "Aww, golden retrievers are so cute! I love dogs."
+      ]
+    },
+    {
+      "label": "I love to read too",
+      "count": 146,
+      "evidence": [
+        "I love to read too! I'm always looking for new books to read. I love to read all kinds of different genres.",
+        "Those sound like great hobbies! I love to read too.",
+        "I love to read too! What are some of your favorite books?",
+        "That sounds like a lot of fun! I love to read too. I also like to go hiking and play basketball.",
+        "That sounds like a lot of fun! I love to read too. What are you reading right now?"
+      ]
+    },
+    {
+      "label": "I love animals",
+      "count": 142,
+      "evidence": [
+        "Aw, that's awesome! I love animals.",
+        "I love to watch TV and admire beautiful flowers. I also live on a pig farm so I love animals! Do you have any pets?",
+        "I prefer not to have pets, but I love animals. I need my home to be a quiet place so I can focus on my art.",
+        "I love animals! What kinds of dogs do you have?",
+        "That's awesome, I love animals! What kind of parrot is he?"
+      ]
+    },
+    {
+      "label": "I love cats",
+      "count": 124,
+      "evidence": [
+        "Oh, that's cool! I love cats!",
+        "I love cats. I used to have one named Mittens.",
+        "I love cats! I'm of mixed race, but I identify more with my Chinese heritage.",
+        "I love cats! I used to have a cat named Smokey.",
+        "Sounds cute! I love cats. I have two of my own."
+      ]
+    },
+    {
+      "label": "I love golden retrievers",
+      "count": 124,
+      "evidence": [
+        "Those are both great breeds! I love golden retrievers.",
+        "I love golden retrievers! I have a red headed brother and he has had two of them.",
+        "I love golden retrievers! They're such sweet dogs.",
+        "I love golden retrievers! They're so friendly and lovable.",
+        "I love golden retrievers! They're so friendly."
+      ]
+    },
+    {
+      "label": "I love to cook too",
+      "count": 118,
+      "evidence": [
+        "Reading is a great way to relax. I love to cook too! What is your favorite meal to make?",
+        "That's awesome! I love to cook too. What's your favorite thing to cook?",
+        "Those all sound like great hobbies! I love to cook too. What's your favorite thing to make?",
+        "I love to cook too. What's your favorite dish to make?",
+        "That's awesome! I love to cook too."
+      ]
+    },
+    {
+      "label": "I love my job",
+      "count": 81,
+      "evidence": [
+        "I'm a children's librarian. I love my job!",
+        "I don't believe in love, but I love my job.",
+        "I work for a magazine as a copywriter. I love my job!",
+        "It is. I love my job.",
+        "I'm doing good too. Thanks for asking. I'm a nurse at a hospital, and I love my job. I help people get better and go home to their families."
+      ]
+    },
+    {
+      "label": "I love animals too",
+      "count": 63,
+      "evidence": [
+        "That's really cool! I love animals too. I'm allergic to lactose, so I don't eat dairy products.",
+        "Aw, that's so sweet! I love animals too.",
+        "I see. I love animals too. I have two dogs.",
+        "That's awesome! I love animals too. I have a few pet chickens on my farm.",
+        "That's awesome! I love animals too. What kind of animals do you have?"
+      ]
+    },
+    {
+      "label": "I love historical fiction too",
+      "count": 62,
+      "evidence": [
+        "I've never read any of Stephen King's books, but I've heard good things about them. I'll have to check them out. I love historical fiction too. Have you read any of Ken Follett's books?",
+        "I love historical fiction too! I've been reading a lot of books about the Roman Empire lately.",
+        "I love historical fiction too! I'm currently reading a book about the American Revolution.",
+        "I love historical fiction too! I've never read a romance novel, but I've heard good things.",
+        "I love historical fiction too! What are some of your favorite historical fiction books?"
+      ]
+    },
+    {
+      "label": "I love them too",
+      "count": 57,
+      "evidence": [
+        "Those are all great movies! I love them too.",
+        "Those are all great games! I love them too.",
+        "Those are all great songs! I love them too.",
+        "Those are all great bands! I love them too.",
+        "I love them too! I feel like I'm exploring the wilderness without leaving my couch. Do you have a favorite one?"
+      ]
+    },
+    {
+      "label": "I love to read",
+      "count": 57,
+      "evidence": [
+        "I don't really play video games, but I love to read. What's your favorite book?",
+        "I love to read! It's one of my favorite ways to relax.",
+        "Yes, I love to read. I read a lot of different genres, but I'm especially into historical fiction and thrillers",
+        "I love to read! I am currently reading a book called \"the great gatsby\".",
+        "That's really cool! I love to read. What's your favorite book?"
+      ]
+    },
+    {
+      "label": "I like to spend time with my family and friends too",
+      "count": 53,
+      "evidence": [
+        "I like to spend time with my family and friends too. I also like to play video games, watch movies, and read.",
+        "I like to spend time with my family and friends, go out to eat, and read.",
+        "That sounds relaxing. I like to spend time with my family and friends. I also like to paint and cook.",
+        "I like to spend time with my family and friends, and I also like to build models of sports cars. Do you have any hobbies?",
+        "I like to spend time with my family and friends, go for walks in the park, and read."
+      ]
+    },
+    {
+      "label": "I love to cook",
+      "count": 52,
+      "evidence": [
+        "I love to cook! I love to experiment with new recipes and I love to share my food with my friends and family.",
+        "That's awesome! I love to cook.",
+        "Baking sounds fun! I love to cook.",
+        "Oh, cool! I'm a stay-at-home mom, but I love to cook.",
+        "I love to cook! I've been in a bit of a funk since my house was robbed, but creating new recipes always helps me feel better. I also love spending time with my cat, Speckles."
+      ]
+    },
+    {
+      "label": "I like a lot of different kinds of music, but I really like the band Radiohead",
+      "count": 52,
+      "evidence": [
+        "I like a lot of different kinds of music, but I really like the band Radiohead.",
+        "I like a lot of different kinds of music, but I especially love dancing to hip hop and R&B.",
+        "I like a lot of different kinds of music, but I'm really into rock and metal right now.",
+        "I like a lot of different kinds of music, but my favorite band is the Red Hot Chili Peppers.",
+        "I like a lot of different kinds of music, but I'm really into hip hop and R&B right now."
+      ]
+    },
+    {
+      "label": "I love music",
+      "count": 51,
+      "evidence": [
+        "I love music. What are you listening to?",
+        "That's awesome! I love music.",
+        "That sounds fun! I love music. What kind of music do you play?",
+        "That's so cool! I can't sing at all, but I love music.",
+        "That's awesome! I love music. What kind of music do you play?"
+      ]
+    },
+    {
+      "label": "I like to read too",
+      "count": 50,
+      "evidence": [
+        "That sounds nice. I like to read too. Do you have any favorite books?",
+        "Cool, I like to read too. What kind of books do you like to read?",
+        "Nice, I like to read too. I've never flown a kite though.",
+        "I like to read too! What kind of books do you like to read?",
+        "That sounds like a fun day! I like to read too. What are your favorite books?"
+      ]
+    },
+    {
+      "label": "I love it too",
+      "count": 49,
+      "evidence": [
+        "I'm a potter, and I love it too! It's so cool that we have similar interests. What's your favorite thing about being a software engineer?",
+        "That is a great song! I love it too.",
+        "That's a great song! I love it too.",
+        "That's a great game! I love it too.",
+        "That's a great book! I love it too."
+      ]
+    },
+    {
+      "label": "I love hiking",
+      "count": 47,
+      "evidence": [
+        "That sounds great! I love hiking. It's so peaceful and a great way to get some exercise.",
+        "That sounds amazing! I love hiking.",
+        "Oh that sounds fun, I love hiking. Where do you go hiking?",
+        "That sounds amazing! I love hiking. I went on a hike in the Grand Canyon last year. It was incredible.",
+        "That sounds amazing! I love hiking. I would love to go to Japan some day."
+      ]
+    },
+    {
+      "label": "I love reading too",
+      "count": 47,
+      "evidence": [
+        "I love reading too! I just graduated college with my degree in education. I'm going to teach kindergarten.",
+        "That's great! I love reading too. What are some of your favorite books?",
+        "That's great! I love reading too. Do you have any books that you would recommend?",
+        "I love reading too! What are your favorite books?",
+        "I love reading too! I used to love reading Agatha Christie novels when I was younger."
+      ]
+    },
+    {
+      "label": "I love to travel too",
+      "count": 45,
+      "evidence": [
+        "I love to travel too! Where's your favorite place you've been?",
+        "I love to travel too! I've been to a few countries, but I would love to travel to more. I've never been gardening, but it sounds like something I would enjoy. And I love movies! I don't collect movie posters, but I do have a lot of DVDs.",
+        "That's great! I love to travel too. I've been to a few different countries, but I'd love to travel to more.",
+        "That's great! I love to travel too! I've been to a few different countries, but I'd love to travel to more.",
+        "I love to travel too! I've been to a few different countries, but I still have a lot of places I want to go."
+      ]
+    },
+    {
+      "label": "I love music too",
+      "count": 43,
+      "evidence": [
+        "Thank you! I love music too. I play the piano and I used to take ballet lessons when I was younger.",
+        "I love music too! What are some of your favorite artists?",
+        "I love music too! I'm in a grunge band with my sister.",
+        "That sounds great! I love music too. What kind of music do you like to listen to?",
+        "I love music too! What kind of music do you like?"
+      ]
+    },
+    {
+      "label": "I love hiking too",
+      "count": 41,
+      "evidence": [
+        "That sounds like fun! I love hiking too.",
+        "That sounds like it was fun. I love hiking too. Where did you go hiking?",
+        "That's great! I love hiking too. I'm actually a part of a hiking group.",
+        "That sounds awesome! I love hiking too. I'm not much of a photographer, but I always enjoy taking pictures of the outdoors.",
+        "That's so cool! I love hiking too. I have always been interested in space and astronomy."
+      ]
+    },
+    {
+      "label": "I love them",
+      "count": 40,
+      "evidence": [
+        "Oh I love them! I saw them in concert a few years ago. They were amazing!",
+        "I know, right? I love them!",
+        "Yeah, they're a handful but I love them.",
+        "Thanks. I'm a mom too, and I want to make sure my daughters know how much I love them.",
+        "Golden retrievers are so sweet! I love them."
+      ]
+    },
+    {
+      "label": "I love spending time with my family and friends too",
+      "count": 40,
+      "evidence": [
+        "That sounds great! I love spending time with my family and friends too. What kind of things do you like to read?",
+        "I love spending time with my family and friends. I also enjoy watching movies and reading books.",
+        "I love spending time with my family and friends, and I also enjoy reading and hiking. What about you?",
+        "I know that feeling. I love spending time with my family and friends too. What did you do together?",
+        "Those are both great things about Christmas! I love spending time with my family and friends too."
+      ]
+    },
+    {
+      "label": "I like to do those things too",
+      "count": 39,
+      "evidence": [
+        "That's cool! I like to do those things too. I also like to cook, and I enjoy cooking my favorite Asian food with my son.",
+        "Sounds fun! I like to do those things too.",
+        "That sounds nice! I like to do those things too.",
+        "Oh nice. I like to do those things too. I'm a big fan of sci-fi and fantasy movies.",
+        "Oh, that's cool. I like to do those things too."
+      ]
+    },
+    {
+      "label": "I love the beach",
+      "count": 35,
+      "evidence": [
+        "Hey! I'm from a small town too, I love the beach.",
+        "That sounds nice! I love the beach.",
+        "That sounds like a lot of fun! I love the beach",
+        "Me too! I love the beach. I like to go swimming and sunbathing.",
+        "That sounds amazing! I love the beach. Do you live near the ocean?"
+      ]
+    },
+    {
+      "label": "I love spending time with my family too",
+      "count": 34,
+      "evidence": [
+        "That's great. I love spending time with my family too.",
+        "That's great! I love spending time with my family too. They help me stay grounded and connected to my roots.",
+        "Those sound like great ways to relax! I love spending time with my family too.",
+        "That's so sweet! I love spending time with my family too.",
+        "That sounds nice! I love spending time with my family too. Do you have any hobbies?"
+      ]
+    },
+    {
+      "label": "I love their music",
+      "count": 33,
+      "evidence": [
+        "Bon Jovi is great! I love their music.",
+        "Me too! I love their music.",
+        "You should! They are a great band. I love their music.",
+        "The Beatles are great! I love their music.",
+        "The Rolling Stones. I love their music. What's yours?"
+      ]
+    },
+    {
+      "label": "I love being outdoors",
+      "count": 31,
+      "evidence": [
+        "That sounds like an amazing job! I love being outdoors. What's your favorite part about it?",
+        "That sounds great! I love being outdoors.",
+        "That sounds really fun! I love being outdoors. I haven't gone home in over two years. I live on the road and decorate Christmas trees all over the country.",
+        "That sounds amazing! I love being outdoors.",
+        "I love being outdoors. I grew up in the mountains and I learned to ski when I was young."
+      ]
+    },
+    {
+      "label": "I love cooking too",
+      "count": 31,
+      "evidence": [
+        "That's awesome! I love cooking too. I'm always looking for new ways to make my home cooking more exciting.",
+        "I love cooking too! I'm always trying new recipes.",
+        "I love cooking too! What's your favorite thing to cook?",
+        "Oh that sounds like a lot of fun! I love cooking too.",
+        "That's awesome! I love cooking too. I love the process of creating a delicious meal and sharing it with others."
+      ]
+    },
+    {
+      "label": "I love to travel",
+      "count": 31,
+      "evidence": [
+        "I love to travel. I've been to a lot of different countries.",
+        "I love to travel! I went to Thailand once and it was amazing!",
+        "I love to travel! I've been to a few countries, but I'd love to travel more.",
+        "I love to travel. I've been all over the world.",
+        "Yeah I love to travel! I've been to a few different countries."
+      ]
+    },
+    {
+      "label": "I love that",
+      "count": 30,
+      "evidence": [
+        "I love that! I usually get a venti caramel macchiato.",
+        "I love that! I'm sure your blog is great!",
+        "I love that. Cooking is such a great way to connect with others.",
+        "I love that! I'd love to have a dog someday.",
+        "That's awesome! I love that. I'm always trying to get my husband to walk or bike more instead of driving everywhere."
+      ]
+    },
+    {
+      "label": "I like to read, go for walks, and spend time with my dog",
+      "count": 30,
+      "evidence": [
+        "I like to read, go for walks, and spend time with my dog.",
+        "I like to read, go for walks, and spend time with my family and friends.",
+        "I like to read, go for walks, and spend time with my friends and family.",
+        "I like to read, go for walks, and spend time with my family.",
+        "I like to read, go for walks, and spend time with my family. What about you?"
+      ]
+    },
+    {
+      "label": "I love gardening too",
+      "count": 28,
+      "evidence": [
+        "That's great! I love gardening too. What kind of plants do you have?",
+        "That sounds like a great hobby! I love gardening too.",
+        "That sounds really fun! I love gardening too. I do a lot of weeding and yard work to keep fit.",
+        "That sounds really nice. I love gardening too. I have a rose garden in my backyard that I love to spend time in.",
+        "That's so cool! I love gardening too. I do n't have daughters but I have a girlfriend. I'm heading home after a long run to see her and eat some tacos."
+      ]
+    },
+    {
+      "label": "I love that book",
+      "count": 28,
+      "evidence": [
+        "I love that book! It's so well written and the characters are so interesting.",
+        "I love that book! It's so funny.",
+        "I love that book! It's so sweet and romantic.",
+        "I love that book! I have been trying to make a batch of organic cat food for my kitty.",
+        "Oh, I love that book! I've read it multiple times."
+      ]
+    },
+    {
+      "label": "I like to do a lot of the same things",
+      "count": 27,
+      "evidence": [
+        "Those sound like fun activities! I like to do a lot of the same things.",
+        "That sounds like a lot of fun. I like to do a lot of the same things.",
+        "That sounds like fun. I like to do a lot of the same things. What's your favorite movie that you've seen recently?",
+        "Those all sound like fun things to do. I like to do a lot of the same things.",
+        "That sounds like a lot of fun. I like to do a lot of the same things. I also like to read, go for walks, and play games."
+      ]
+    },
+    {
+      "label": "I love to read as well",
+      "count": 27,
+      "evidence": [
+        "Those are all great things to do! I love to read as well. What are some of your favorite books?",
+        "I love to read as well! What are some of your favorite books?",
+        "I love to read as well! I have a blog where I share my thoughts and opinions on different topics. I'm also a fan of anime. What's your favorite anime?",
+        "I have never tried meditating, but I have heard great things about it. I love to read as well!",
+        "That's great! I love to read as well. What kind of fiction do you like to read?"
+      ]
+    },
+    {
+      "label": "I love pasta",
+      "count": 27,
+      "evidence": [
+        "That sounds amazing. I love pasta.",
+        "Me too! I love pasta.",
+        "That sounds great! I love pasta. I also enjoy making ice cream.",
+        "I love pasta! I'm not very good at making it, but I love to eat it.",
+        "That sounds delicious! I love pasta."
+      ]
+    },
+    {
+      "label": "I like those too",
+      "count": 27,
+      "evidence": [
+        "Oh cool, I like those too! What are some of your favorite books?",
+        "I like those too! I've been reading a lot of Stephen King lately.",
+        "I like those too. I've been reading a lot of historical fiction lately.",
+        "Oh I like those too! My favorite is The Usual Suspects.",
+        "I like those too! I also like foreign films, but it's hard to find them sometimes."
+      ]
+    },
+    {
+      "label": "I love that one too",
+      "count": 27,
+      "evidence": [
+        "That's a great song! I love that one too.",
+        "Oh, that's a great song! I love that one too.",
+        "That's a great one! I love that one too.",
+        "I love that one too! I'm glad you had a good time at the concert.",
+        "I love that one too! It's so romantic."
+      ]
+    }
+  ],
+  "personal_facts": [
+    {
+      "label": "my family and friends",
+      "count": 200,
+      "evidence": [
+        "I like to draw comics, dance with my friends, and spend time with my family and friends.",
+        "I love to spend time with my family and friends. I also love to help people in need. I am also a big fan of Lindsey Stirling and Fine Frenzy.",
+        "Those are some great interests! I also love to write and read. I also enjoy spending time with my family and friends.",
+        "Thank you! It is, but it's also a lot of work. I'm grateful for the support of my family and friends.",
+        "I like to read and watch movies. I also like to spend time with my family and friends."
+      ]
+    },
+    {
+      "label": "I'm a software engineer",
+      "count": 63,
+      "evidence": [
+        "I'm a software engineer.",
+        "I'm a software engineer. I love working on new projects and learning new things.",
+        "I'm a software engineer. It can be stressful, but I enjoy it.",
+        "I'm a software engineer. I work on software for a large company.",
+        "Oh cool! I'm a software engineer."
+      ]
+    },
+    {
+      "label": "my family and friends too",
+      "count": 40,
+      "evidence": [
+        "I like to spend time with my family and friends too. I also like to play video games, watch movies, and read.",
+        "That sounds great! I love spending time with my family and friends too. What kind of things do you like to read?",
+        "I like to play football, watch movies, and spend time with my family and friends too. I'm also really passionate about the ocean, and I'm working hard to make a positive impact on it.",
+        "That's great. I'm looking forward to spending time with my family and friends too.",
+        "I know that feeling. I love spending time with my family and friends too. What did you do together?"
+      ]
+    },
+    {
+      "label": "I'm a stay-at-home mom",
+      "count": 15,
+      "evidence": [
+        "I'm a stay-at-home mom.",
+        "I'm a stay-at-home mom. I love it, but it can be a lot of work too.",
+        "I'm a stay-at-home mom. I love spending time with my kids and taking care of my home.",
+        "Hey there, I'm a stay-at-home mom. What do you do for a living?",
+        "I can imagine! I'm a stay-at-home mom. I love it, but it can also be stressful."
+      ]
+    },
+    {
+      "label": "my kids, but it's hard when I'm so busy with work",
+      "count": 10,
+      "evidence": [
+        "I'm trying to find a way to make more time for my kids, but it's hard when I'm so busy with work.",
+        "I'm going to treat my mom to her favorite fast food on this weekend as a celebration of her recovery from cancer. I'm also trying to find a way to make more time for my kids, but it's hard when I'm so busy with work.",
+        "I'm really trying to find a way to make more time for my kids, but it's hard when I'm so busy with work.",
+        "That's great! I'm trying to find a way to make more time for my kids, but it's hard when I'm so busy with work.",
+        "I'm doing okay! I'm trying to find a way to make more time for my kids, but it's hard when I'm so busy with work."
+      ]
+    },
+    {
+      "label": "my family and dog",
+      "count": 10,
+      "evidence": [
+        "I love going to concerts too! I also love spending time with my family and dog.",
+        "I enjoy spending time with my family and dog. I also like to cook and bake.",
+        "I like going to the farmers market every weekend, and spending time with my family and dog. I also enjoy reading.",
+        "I love to cook and try new recipes. I also love to spend time with my family and dog.",
+        "Hello there! I'm a travel writer and photographer who loves to spend time with my family and dog. What are your hobbies?"
+      ]
+    },
+    {
+      "label": "I'm a wedding planner",
+      "count": 10,
+      "evidence": [
+        "I'm a wedding planner.",
+        "Hi! I'm a wedding planner. It's a great job, but the hours are long!",
+        "I'm a wedding planner. It's been fun so far, but it's a lot of work.",
+        "Hi there! My name is Rachel and I'm a wedding planner.",
+        "Hey! I'm a wedding planner."
+      ]
+    },
+    {
+      "label": "I'm a software engineer too",
+      "count": 9,
+      "evidence": [
+        "That's cool, I'm a software engineer too. I work in a bank.",
+        "That's awesome. I'm a software engineer too!",
+        "Oh, that's awesome! I'm a software engineer too. I work for Google in Seattle.",
+        "Hello there! I'm a software engineer too. What kind of software do you engineer?",
+        "Oh cool! I'm a software engineer too."
+      ]
+    },
+    {
+      "label": "I'm a personal trainer",
+      "count": 9,
+      "evidence": [
+        "I'm a personal trainer. I help people get in shape and live a healthier lifestyle.",
+        "I'm a personal trainer. I like it.",
+        "I like to work out too! I'm a personal trainer.",
+        "That's awesome! I'm a personal trainer. I help people get fit and healthy.",
+        "I'm a personal trainer!"
+      ]
+    },
+    {
+      "label": "I live in a small town in the Midwest",
+      "count": 9,
+      "evidence": [
+        "I live in a small town in the Midwest. Where are you from?",
+        "I live in a small town in the Midwest. It's a very quiet and peaceful place to live. I love it here.",
+        "I love it here! I live in a small town in the Midwest. People are friendly and helpful.",
+        "I live in a small town in the Midwest.",
+        "I live in a small town in the Midwest. It's pretty great, but I miss the city sometimes."
+      ]
+    },
+    {
+      "label": "my family this weekend",
+      "count": 8,
+      "evidence": [
+        "I am doing well. I am excited to see my family this weekend.",
+        "I'm great! I'm excited to be hiking with my family this weekend.",
+        "I'm doing well, thanks! I'm grilling a lot of meat for my family this weekend.",
+        "That's great! I'm going on a hiking trip with my family this weekend.",
+        "Me too! I'm actually going on a camping trip with my family this weekend."
+      ]
+    },
+    {
+      "label": "I'm a police officer",
+      "count": 8,
+      "evidence": [
+        "I'm a police officer.",
+        "Oh, nice! I'm a police officer.",
+        "Hi, I'm a police officer. My family is proud of my decision to become one. I like to try new restaurants. My favorite place to eat recently is this new sushi place that just opened up. I drive a Subaru Outback because it's a practical car for getting to the lake and for carrying all my books.",
+        "Oh cool! I'm a police officer.",
+        "Oh, that's great! I'm a police officer."
+      ]
+    },
+    {
+      "label": "I'm an only child",
+      "count": 8,
+      "evidence": [
+        "That's nice. I'm an only child.",
+        "I'm an only child. I always wish I had a sibling to play with when I was growing up.",
+        "That sounds really nice! I wish I had a bigger family. I'm an only child.",
+        "I wish I had a best friend. I'm an only child",
+        "Wow, that's awesome! I have a younger sibling, but I'm an only child."
+      ]
+    },
+    {
+      "label": "I'm a graphic designer",
+      "count": 8,
+      "evidence": [
+        "Not much, just got home from work. I'm a graphic designer.",
+        "That sounds fun! I spent most of the day working on my latest design. I'm a graphic designer.",
+        "I'm a graphic designer. I love my job! I get to be creative all day long.",
+        "I'm a graphic designer."
+      ]
+    },
+    {
+      "label": "my family in a small mountain town",
+      "count": 7,
+      "evidence": [
+        "I'm an actor, but I'm currently on a break from working and am enjoying my time with my family in a small mountain town.",
+        "I'm doing well, thanks for asking! I'm an actor, but I'm currently on a break from working and am enjoying my time with my family in a small mountain town.",
+        "I'm trying to quit smoking for the sake of my baby. I'm also an actor, but I'm currently on a break from working and enjoying my time with my family in a small mountain town.",
+        "Hi there! I'm an actor. I'm currently on a break from working and am enjoying my time with my family in a small mountain town.",
+        "I am an actor, but I am currently on a break from working and am enjoying my time with my family in a small mountain town."
+      ]
+    },
+    {
+      "label": "I'm a big fan of the Golden State Warriors",
+      "count": 6,
+      "evidence": [
+        "I'm a big fan of the Golden State Warriors.",
+        "I love basketball too! I'm a big fan of the Golden State Warriors.",
+        "Me too! I'm a big fan of the Golden State Warriors.",
+        "I'm a big fan of the Golden State Warriors. They're my favorite team.",
+        "That's cool! I love basketball too. I'm a big fan of the Golden State Warriors."
+      ]
+    },
+    {
+      "label": "I'm a financial analyst for a brewery",
+      "count": 6,
+      "evidence": [
+        "I'm a financial analyst for a brewery.",
+        "That sounds like a fun job. I'm a financial analyst for a brewery.",
+        "I bet. I'm a financial analyst for a brewery."
+      ]
+    },
+    {
+      "label": "I work at a grocery store",
+      "count": 6,
+      "evidence": [
+        "I work at a grocery store. What about you?",
+        "I'm an actress and I work at a grocery store.",
+        "I love reading, acting, and playing video games. I'm also an actress and I work at a grocery store.",
+        "That's awesome! I'm sure you'll be a great plumber. I'm an actress and I work at a grocery store.",
+        "I'm doing well too, thanks for asking! I'm an actress and I work at a grocery store. What do you do?"
+      ]
+    },
+    {
+      "label": "My mom is a music teacher at the elementary school",
+      "count": 6,
+      "evidence": [
+        "That sounds nice. I like to spend time with my family too. My mom is a music teacher at the elementary school.",
+        "My mom is a music teacher at the elementary school! I grew up listening to all kinds of music, but I have to admit that I'm not a big fan of the 80s.",
+        "Oh, that's awesome! My mom is a music teacher at the elementary school too.",
+        "I've been to Japan a few times and I agree, it's amazing! I have also been to Thailand and I loved the food there. My mom is a music teacher at the elementary school, so I grew up going to a lot of concerts.",
+        "They are great! My mom is a music teacher at the elementary school."
+      ]
+    },
+    {
+      "label": "I'm a party planner",
+      "count": 5,
+      "evidence": [
+        "I'm a party planner. I love planning events and making people happy.",
+        "I'm a party planner! I love it because I get to be creative and help people have a great time.",
+        "I'm a party planner!",
+        "I'm a party planner! I'm planning a big birthday party for my friend this weekend.",
+        "I'm a party planner. It's a lot of work, but I love it."
+      ]
+    },
+    {
+      "label": "I'm a tour guide at the Grand Canyon",
+      "count": 5,
+      "evidence": [
+        "Hi there, I'm a tour guide at the Grand Canyon.",
+        "Oh my gosh, that's awesome! I'm just getting ready for work, I'm a tour guide at the Grand Canyon.",
+        "I'm a tour guide at the Grand Canyon. I love my job because I get to meet people from all over the world and share my love of nature with them.",
+        "That's so cool! I'm a tour guide at the Grand Canyon. I love my job!",
+        "Hello there. I'm a tour guide at the Grand Canyon. I love my job and enjoy talking about the geology of the area. What are your interests?"
+      ]
+    },
+    {
+      "label": "my parents in my hometown",
+      "count": 5,
+      "evidence": [
+        "Hi! I'm a software engineer who works remotely, so I can live in a big city and still take care of my parents in my hometown. What do you do for a living?",
+        "I love peaches too. I'm a software engineer who works remotely, so I can live in a big city and still take care of my parents in my hometown. What do you do for work?",
+        "I can understand that. I'm a software engineer, but I work remotely so I get to live in a big city and still take care of my parents in my hometown.",
+        "Hi, I'm a software engineer who works remotely so I can live in a big city and still take care of my parents in my hometown. What do you do?"
+      ]
+    },
+    {
+      "label": "I'm a big fan of Taylor Swift",
+      "count": 5,
+      "evidence": [
+        "Nice! I like pop music too. I'm a big fan of Taylor Swift.",
+        "Oh cool! I like all of those artists too. I'm a big fan of Taylor Swift.",
+        "I love playing video games, and I'm a big fan of Taylor Swift.",
+        "I love to listen to music and bake. I'm a big fan of Taylor Swift!",
+        "Me too! I'm a big fan of Taylor Swift."
+      ]
+    },
+    {
+      "label": "I'm a social media manager for a small business",
+      "count": 5,
+      "evidence": [
+        "I'm a social media manager for a small business.",
+        "Hello, I'm a social media manager for a small business. I want to learn how to use social media to advertise my business."
+      ]
+    },
+    {
+      "label": "I'm an artist from a small town in the Midwest",
+      "count": 5,
+      "evidence": [
+        "I'm an artist from a small town in the Midwest. What about you?",
+        "Today I'm working on a new painting. I'm an artist from a small town in the midwest.",
+        "I'm an artist from a small town in the Midwest.",
+        "That's awesome! I love animals. I'm an artist from a small town in the midwest, and I've been working at my current job for three years. I'm really happy here.",
+        "Oh that sounds exciting. I'm an artist from a small town in the Midwest, where are you from?"
+      ]
+    },
+    {
+      "label": "my wife and kids",
+      "count": 5,
+      "evidence": [
+        "Hello! I live in Grand Rapids, Michigan with my wife and kids.",
+        "That sounds like fun! I'm going to spend it with my wife and kids.",
+        "It sounds like we have a lot in common! I am also a family man, and I love spending time with my wife and kids. I am also determined to overcome my fears and achieve my goals.",
+        "Same here! I'm just hanging out with my wife and kids.",
+        "I'm not sure yet. Maybe going for a walk with my wife and kids."
+      ]
+    },
+    {
+      "label": "my parents don't know about",
+      "count": 4,
+      "evidence": [
+        "I'm doing great! I'm a fulltime student studying radiology at a local college and I also play in a band that my parents don't know about.",
+        "I am doing well! I just got back from the store, and I have a secret stash of snacks in my room that my parents don't know about.",
+        "I love game of thrones! I have a secret stash of snacks in my room that my parents don't know about. What do you like to do in your free time?",
+        "Wow! We have a lot in common. I love hiking too! I have a tattoo on my back that my parents don't know about."
+      ]
+    },
+    {
+      "label": "My family is everything to me",
+      "count": 4,
+      "evidence": [
+        "I'm sorry to hear that. My family is everything to me.",
+        "Me too! My family is everything to me.",
+        "I know the feeling. My family is everything to me."
+      ]
+    },
+    {
+      "label": "my family and partner",
+      "count": 4,
+      "evidence": [
+        "Hi. I am so happy to have quit my job! Now I can focus on my family and partner.",
+        "I'm going to focus on my family and partner. We have a husky together, and I love playing with him after a long day of work.",
+        "I just quit my job, so I'm going to spend time with my family and partner.",
+        "I'm doing great! I just quit my job and I'm really excited to focus on my family and partner."
+      ]
+    },
+    {
+      "label": "my mom to her favorite fast food on this weekend as a celebration of her recovery from cancer",
+      "count": 4,
+      "evidence": [
+        "I'm good. I'm just planning on treating my mom to her favorite fast food on this weekend as a celebration of her recovery from cancer.",
+        "I'm going to treat my mom to her favorite fast food on this weekend as a celebration of her recovery from cancer. I'm also trying to find a way to make more time for my kids, but it's hard when I'm so busy with work.",
+        "That sounds amazing! I want to treat my mom to her favorite fast food on this weekend as a celebration of her recovery from cancer.",
+        "I want to treat my mom to her favorite fast food on this weekend as a celebration of her recovery from cancer."
+      ]
+    },
+    {
+      "label": "I'm a single mom working two jobs to support my children",
+      "count": 4,
+      "evidence": [
+        "Hey, I'm a single mom working two jobs to support my children. What about you?",
+        "I'm a single mom working two jobs to support my children.",
+        "I'm a single mom working two jobs to support my children. I love working out with music to help push myself. I pretended to be asleep when the cop approached my car. i have a dog and we go for walks. I'm single, but my writing keeps me busy.",
+        "Same here. I'm a single mom working two jobs to support my kids, but I'm enjoying the challenge."
+      ]
+    },
+    {
+      "label": "I'm an environmental engineer",
+      "count": 4,
+      "evidence": [
+        "I'm an environmental engineer. I love my job because it allows me to have a positive impact on the environment.",
+        "I'm an environmental engineer. I work at a company that helps companies reduce their environmental impact.",
+        "I'm an environmental engineer.",
+        "I'm good, I'm an environmental engineer. I love my job. It allows me to work from home and have the flexibility I need to take care of my health. I also love listening to the Beatles while I work on my dog's training."
+      ]
+    },
+    {
+      "label": "I live in a big city",
+      "count": 4,
+      "evidence": [
+        "Hi! I'm a LARPer and I live in a big city. What kind of music do you like to move your body to?",
+        "I moved to America when I was 14, and now I live in a big city.",
+        "That sounds amazing. I love the outdoors too, but I live in a big city.",
+        "I live in a big city."
+      ]
+    },
+    {
+      "label": "I'm a huge fan",
+      "count": 4,
+      "evidence": [
+        "I like to go to the ballet, I'm a huge fan! I also like to try different beers from various countries.",
+        "Me too! I'm a huge fan.",
+        "I've read all of the books and seen all of the movies. I'm a huge fan."
+      ]
+    },
+    {
+      "label": "I'm a web developer",
+      "count": 4,
+      "evidence": [
+        "I'm a web developer.",
+        "That's cool. I'm a web developer."
+      ]
+    },
+    {
+      "label": "my parents that I can make a career out of it",
+      "count": 4,
+      "evidence": [
+        "I'm going to sign up for a singing competition and show my parents that I can make a career out of it.",
+        "I hope my wedding planning business keeps booming as the weather warms up. I'm going to sign up for a singing competition soon to show my parents that I can make a career out of it.",
+        "I'm going to sign up for a singing competition to show my parents that I can make a career out of it."
+      ]
+    },
+    {
+      "label": "my family history",
+      "count": 4,
+      "evidence": [
+        "I'm doing well! I just finished reading a book about my family history. It was really interesting.",
+        "I think so too! I'm proud of my family history.",
+        "I'm working on my family history. I think I might be related to Jasper the dog from the cartoon show.",
+        "I like to explore the city with my best friend and I'm really interested in my family history."
+      ]
+    },
+    {
+      "label": "I work as a software engineer",
+      "count": 4,
+      "evidence": [
+        "Yeah, I work as a software engineer.",
+        "I work as a software engineer. Do you like your job?",
+        "I work as a software engineer."
+      ]
+    },
+    {
+      "label": "I'm a music teacher",
+      "count": 4,
+      "evidence": [
+        "I'm a music teacher.",
+        "Oh that's cool! I'm a music teacher.",
+        "I'm a music teacher. I teach violin lessons.",
+        "I'm a music teacher. I teach music lessons to kids."
+      ]
+    },
+    {
+      "label": "I'm a museum curator",
+      "count": 4,
+      "evidence": [
+        "I'm a museum curator.",
+        "I'm a museum curator. I've been working on a new exhibit about art and history.",
+        "Hi there, I'm a museum curator!",
+        "Oh, that's cool. I'm a museum curator."
+      ]
+    }
+  ],
+  "personality_traits": [
+    {
+      "label": "Often sounds positive or enthusiastic",
+      "count": 39162,
+      "evidence": [
+        "I'm doing pretty well. I'm excited to be moving to a new city soon!",
+        "That sounds amazing! I've never been to Powell's Books before. I'm definitely going to have to check it out.",
+        "Thanks for the recommendation! I'm sure I'll love it.",
+        "I'm doing great! I'm a fulltime student studying radiology at a local college and I also play in a band that my parents don't know about.",
+        "Nice! I've been meaning to try yoga but I've never really had the time."
+      ]
+    },
+    {
+      "label": "Asks follow-up questions",
+      "count": 14212,
+      "evidence": [
+        "Really? That's so cool! Do you still live there?",
+        "That's great. Do you have any favorite places to visit in Portland?",
+        "I'll have to try it sometime! What about your Impala?",
+        "I'm doing well, thanks for asking. What kind of things do you enjoy doing?",
+        "Reading is a great way to relax. I love to cook too! What is your favorite meal to make?"
+      ]
+    },
+    {
+      "label": "Shows humor or playful phrasing",
+      "count": 356,
+      "evidence": [
+        "That's cool! I'm a barista. I love books, and I like to watch funny and lighthearted shows to relax.",
+        "I love to play badminton and watch funny shows. I'm also a student in social sciences and I love to draw comics.",
+        "It is! They're so cute and funny.",
+        "Haha, I'm sure they love you. I can do a lot of celebrity impressions. Do you have any talents?",
+        "That's funny. I love swimming and playing in the sand too. I don't usually spill drinks on myself, but I've been known to do it a time or two."
+      ]
+    },
+    {
+      "label": "Shares emotional states directly",
+      "count": 247,
+      "evidence": [
+        "Me too! I miss fishing.",
+        "I'm trying to find a way to relax. I'm always stressed out.",
+        "I'm doing some jewelry design to relax. I'm stressed out about my women's studies class. I'm a passionate educator who enjoys bringing the joy of learning to life in my students. What do you like to do to relax?",
+        "Yeah, they are. I miss him.",
+        "I'm writing a novel. I'm really excited about it, but I'm nervous to share it with anyone."
+      ]
+    }
+  ],
+  "communication_style": {
+    "average_words_per_user1_message": 11.05,
+    "question_marks": 26758,
+    "exclamation_marks": 54159,
+    "emoji_count": 1,
+    "style_observations": [
+      "Mostly concise conversational messages.",
+      "Frequently asks questions and keeps dialogue moving.",
+      "Uses exclamation marks often, giving an upbeat tone.",
+      "Uses emoji in some messages."
+    ]
+  },
+  "note": "All fields are based on direct User 1 conversation signals and stored evidence snippets."
+}

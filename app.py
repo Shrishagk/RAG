@@ -34,6 +34,22 @@ STOPWORDS = {
 TOKEN_RE = re.compile(r"[a-zA-Z][a-zA-Z']+")
 MESSAGE_RE = re.compile(r"(?m)^(User\s+\d+):\s*(.*)$")
 
+INTENT_LABELS = ["reminder", "emotional-support", "action-item", "small-talk", "unknown"]
+
+POSITIVE_WORDS = {
+    "amazing", "awesome", "best", "calm", "cool", "delicious", "enjoy", "excited",
+    "fun", "glad", "good", "great", "happy", "hope", "love", "nice", "positive",
+    "relax", "thanks", "wonderful",
+}
+NEGATIVE_WORDS = {
+    "angry", "anxious", "bad", "busy", "daunting", "difficult", "frustrated", "hard",
+    "hate", "miss", "nervous", "overwhelmed", "sad", "scared", "sorry", "stress",
+    "stressed", "tired", "worried",
+}
+EMOTIONAL_WORDS = POSITIVE_WORDS | NEGATIVE_WORDS | {
+    "feel", "feeling", "hurt", "lonely", "proud", "upset", "cry", "afraid",
+}
+
 
 @dataclass
 class Message:
@@ -292,6 +308,222 @@ def extract_persona(messages: list[Message]) -> dict[str, Any]:
     }
 
 
+def tone_features(texts: list[str]) -> dict[str, Any]:
+    joined = " ".join(texts)
+    tokens = tokenize(joined)
+    token_count = max(len(tokens), 1)
+    lower = joined.lower()
+    pos = sum(1 for token in tokens if token in POSITIVE_WORDS)
+    neg = sum(1 for token in tokens if token in NEGATIVE_WORDS)
+    questions = joined.count("?")
+    exclamations = joined.count("!")
+    emojis = len(re.findall(r"[\U0001F300-\U0001FAFF]", joined))
+    casual = sum(lower.count(marker) for marker in ("lol", "haha", "hey", "yeah", "cool", "awesome"))
+    formal = sum(lower.count(marker) for marker in ("thank you", "thanks", "appreciate", "please", "certainly"))
+
+    sentiment = (pos - neg) / token_count
+    question_rate = questions / max(len(texts), 1)
+    exclamation_rate = exclamations / max(len(texts), 1)
+    emotion_rate = sum(1 for token in tokens if token in EMOTIONAL_WORDS) / token_count
+
+    tones = []
+    if question_rate >= 0.45:
+        tones.append("curious")
+    if sentiment <= -0.015 or neg >= pos + 2:
+        tones.append("frustrated" if any(w in lower for w in ("frustrated", "stress", "stressed", "hard", "tired")) else "concerned")
+    if sentiment >= 0.018 or pos >= neg + 3:
+        tones.append("positive")
+    if casual >= formal + 2 or exclamation_rate >= 0.45:
+        tones.append("casual")
+    if formal >= casual + 2:
+        tones.append("formal")
+    if emotion_rate >= 0.06:
+        tones.append("emotional")
+    if not tones:
+        tones.append("neutral")
+
+    return {
+        "tone": " & ".join(tones[:3]),
+        "sentiment_score": round(sentiment, 4),
+        "question_rate": round(question_rate, 3),
+        "exclamation_rate": round(exclamation_rate, 3),
+        "emotion_rate": round(emotion_rate, 4),
+        "positive_terms": pos,
+        "negative_terms": neg,
+        "casual_markers": casual,
+        "formal_markers": formal,
+    }
+
+
+def infer_trigger(texts: list[str], previous_keywords: list[str]) -> dict[str, Any]:
+    joined = " ".join(texts)
+    tokens = tokenize(joined)
+    terms = [term for term, _ in Counter(tokens).most_common(8)]
+    new_terms = [term for term in terms if term not in previous_keywords[:12]]
+    person_match = re.search(
+        r"\b(?:my|your)\s+(mom|mother|dad|father|parents|brother|sister|wife|husband|family|friend|kids|children|son|daughter)\b",
+        joined,
+        re.I,
+    )
+    event_match = re.search(
+        r"\b(moving|job|work|school|college|study|studying|birthday|vacation|travel|wedding|interview|exam|project|deadline)\b",
+        joined,
+        re.I,
+    )
+    if person_match:
+        kind = "person"
+        label = person_match.group(0)
+    elif event_match:
+        kind = "event"
+        label = event_match.group(1)
+    elif new_terms:
+        kind = "topic"
+        label = ", ".join(new_terms[:3])
+    else:
+        kind = "tone"
+        label = "change in message tone"
+    return {"type": kind, "label": label, "keywords": terms[:8]}
+
+
+def build_persona_drift(messages: list[Message]) -> list[dict[str, Any]]:
+    rows: dict[int, list[Message]] = defaultdict(list)
+    for msg in messages:
+        if msg.speaker == "User 1":
+            rows[msg.row].append(msg)
+
+    timeline = []
+    previous: dict[str, Any] | None = None
+    previous_keywords: list[str] = []
+    for row in sorted(rows):
+        day_messages = rows[row]
+        texts = [m.text for m in day_messages]
+        features = tone_features(texts)
+        trigger = infer_trigger(texts, previous_keywords)
+        drift = previous is None
+        drift_reasons = []
+        if previous is not None:
+            if features["tone"] != previous["tone"]:
+                drift = True
+                drift_reasons.append(f"tone changed from {previous['tone']} to {features['tone']}")
+            sentiment_delta = features["sentiment_score"] - previous["sentiment_score"]
+            if abs(sentiment_delta) >= 0.025:
+                drift = True
+                direction = "more positive" if sentiment_delta > 0 else "more negative"
+                drift_reasons.append(f"sentiment became {direction}")
+            if trigger["keywords"][:3] != previous_keywords[:3]:
+                drift_reasons.append("main keywords changed")
+        timeline.append(
+            {
+                "day": row,
+                "start_message": day_messages[0].id,
+                "end_message": day_messages[-1].id,
+                "message_count": len(day_messages),
+                "mood_tone": features["tone"],
+                "features": features,
+                "drift_from_previous_day": drift,
+                "drift_reasons": drift_reasons or ["baseline day"],
+                "trigger": trigger,
+                "evidence": [m.text for m in day_messages[:3]],
+            }
+        )
+        previous = features
+        previous_keywords = trigger["keywords"]
+    return timeline
+
+
+def intent_seed_label(text: str) -> str:
+    lower = text.lower()
+    if re.search(r"\b(remind me|remember to|don't let me forget|dont let me forget|tomorrow|tonight|later|next week|alarm)\b", lower):
+        return "reminder"
+    if re.search(r"\b(i feel|i'm sad|i am sad|worried|nervous|scared|stressed|overwhelmed|miss|sorry to hear|hope you feel)\b", lower):
+        return "emotional-support"
+    if re.search(r"\b(need to|have to|should|can you|could you|please|let's|todo|to do|plan|schedule|book|call|send|finish)\b", lower):
+        return "action-item"
+    if re.search(r"\b(hi|hello|hey|how are you|what do you do for fun|favorite|hobby|hobbies|nice talking)\b", lower):
+        return "small-talk"
+    return "unknown"
+
+
+def train_intent_classifier(messages: list[Message]) -> dict[str, Any]:
+    docs: list[tuple[str, str]] = []
+    for msg in messages:
+        if msg.speaker != "User 1":
+            continue
+        label = intent_seed_label(msg.text)
+        docs.append((label, msg.text))
+
+    priors = {label: 1 for label in INTENT_LABELS}
+    token_counts = {label: Counter() for label in INTENT_LABELS}
+    totals = {label: 0 for label in INTENT_LABELS}
+    vocab: Counter[str] = Counter()
+    examples = {label: [] for label in INTENT_LABELS}
+
+    for label, text in docs:
+        priors[label] += 1
+        tokens = tokenize(text)
+        vocab.update(tokens)
+        token_counts[label].update(tokens)
+        totals[label] += len(tokens)
+        if len(examples[label]) < 5:
+            examples[label].append(text)
+
+    trimmed_vocab = {term for term, _ in vocab.most_common(3500)}
+    model_counts = {}
+    for label in INTENT_LABELS:
+        model_counts[label] = {term: count for term, count in token_counts[label].items() if term in trimmed_vocab}
+        totals[label] = sum(model_counts[label].values())
+
+    return {
+        "type": "multinomial_naive_bayes",
+        "labels": INTENT_LABELS,
+        "max_vocab": len(trimmed_vocab),
+        "trained_from": "conversation messages with deterministic weak labels; no external API",
+        "priors": priors,
+        "token_counts": model_counts,
+        "token_totals": totals,
+        "examples": examples,
+    }
+
+
+class IntentClassifier:
+    def __init__(self, model: dict[str, Any]):
+        self.model = model
+        self.labels = model.get("labels", INTENT_LABELS)
+        self.priors = model.get("priors", {})
+        self.token_counts = model.get("token_counts", {})
+        self.token_totals = model.get("token_totals", {})
+        vocab = set()
+        for counts in self.token_counts.values():
+            vocab.update(counts)
+        self.vocab_size = max(len(vocab), 1)
+        self.total_docs = max(sum(self.priors.values()), 1)
+
+    def predict(self, text: str) -> dict[str, Any]:
+        rule_label = intent_seed_label(text)
+        tokens = tokenize(text)
+        scores = {}
+        for label in self.labels:
+            logp = math.log(self.priors.get(label, 1) / self.total_docs)
+            denom = self.token_totals.get(label, 0) + self.vocab_size
+            counts = self.token_counts.get(label, {})
+            for token in tokens:
+                logp += math.log((counts.get(token, 0) + 1) / denom)
+            if rule_label == label:
+                logp += 1.25
+            scores[label] = logp
+        best = max(scores, key=scores.get)
+        ordered = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+        margin = ordered[0][1] - ordered[1][1] if len(ordered) > 1 else 0.0
+        if margin < 0.15 and rule_label == "unknown":
+            best = "unknown"
+        return {
+            "intent": best,
+            "confidence_margin": round(margin, 4),
+            "scores": {label: round(score, 4) for label, score in ordered},
+            "latency_target": "CPU-only and designed for sub-200ms single-message classification",
+        }
+
+
 def is_low_value_fact(value: str) -> bool:
     lower = value.lower()
     blocked = (
@@ -343,6 +575,7 @@ class RagEngine:
             for t in index["topic_checkpoints"]
         ]
         self.chunk_vectors = [vectorize(c["text"] + " " + c["summary"], self.idf) for c in index["chunks"]]
+        self.intent_classifier = IntentClassifier(index.get("intent_model", train_intent_classifier([])))
 
     def search(self, query: str, top_topics: int = 4, top_chunks: int = 5) -> dict[str, Any]:
         q_vec = vectorize(query, self.idf)
@@ -363,6 +596,29 @@ class RagEngine:
 
     def answer(self, query: str) -> dict[str, Any]:
         q = query.lower()
+        if self.is_conflict_query(q):
+            return self.resolve_conflict_query(query)
+        if "intent" in q or q.startswith("classify:"):
+            text = query.split(":", 1)[1].strip() if ":" in query else query
+            prediction = self.intent_classifier.predict(text)
+            return {
+                "answer": f"Offline intent classifier: {prediction['intent']} (margin {prediction['confidence_margin']}).",
+                "retrieval": {"topics": [], "chunks": []},
+                "persona": self.index["persona"],
+                "intent": prediction,
+            }
+        if any(word in q for word in ("drift", "mood", "tone timeline", "timeline")):
+            timeline = self.index.get("persona_drift", [])[:8]
+            lines = [
+                f"Day {item['day']} -> {item['mood_tone']} | trigger: {item['trigger']['type']}={item['trigger']['label']}"
+                for item in timeline
+            ]
+            return {
+                "answer": "Persona drift timeline:\n" + "\n".join(lines),
+                "retrieval": {"topics": [], "chunks": []},
+                "persona": self.index["persona"],
+                "persona_drift": timeline,
+            }
         hits = self.search(query)
         persona = self.index["persona"]
         parts = []
@@ -403,6 +659,70 @@ class RagEngine:
 
         return {"answer": "\n\n".join(parts), "retrieval": hits, "persona": persona}
 
+    def is_conflict_query(self, q: str) -> bool:
+        family_terms = ("sister", "brother", "mother", "mom", "father", "dad", "parents", "family")
+        return any(term in q for term in family_terms) and any(
+            marker in q for marker in ("mention", "anything", "did i", "what did", "contradict", "conflict")
+        )
+
+    def resolve_conflict_query(self, query: str) -> dict[str, Any]:
+        family_terms = [
+            "sister", "brother", "mother", "mom", "father", "dad", "parents",
+            "family", "wife", "husband", "son", "daughter", "kids", "children",
+        ]
+        query_tokens = tokenize(query)
+        exact_family_terms = [term for term in family_terms if term in query_tokens]
+        terms = exact_family_terms or [token for token in query_tokens if token not in {"mention", "anything"}]
+        hits = self.search(query, top_topics=8, top_chunks=16)
+        max_msg = max((chunk["end_message"] for chunk in self.index["chunks"]), default=1)
+        ranked = []
+        for chunk in hits["chunks"]:
+            text = chunk["text"]
+            relevance = chunk.get("score", 0.0)
+            recency = chunk["end_message"] / max_msg
+            emotional = emotional_weight(text)
+            exact_hits = sum(len(re.findall(rf"\b{re.escape(term)}\b", text, re.I)) for term in terms)
+            if exact_family_terms and exact_hits == 0:
+                continue
+            term_boost = min(exact_hits, 6) * 0.12
+            score = relevance + (0.25 * recency) + (0.2 * emotional) + term_boost
+            ranked.append((score, recency, emotional, chunk))
+        ranked.sort(key=lambda item: item[0], reverse=True)
+        selected = ranked[:6]
+        contradiction = detect_contradictions([item[3]["text"] for item in selected], terms)
+
+        evidence_lines = []
+        for score, recency, emotional, chunk in selected[:4]:
+            evidence_lines.append(
+                f"Messages {chunk['start_message']}-{chunk['end_message']} "
+                f"(rank {score:.3f}, recency {recency:.2f}, emotional {emotional:.2f}): {chunk['summary']}"
+            )
+
+        if selected:
+            answer = (
+                "Yes. I found relevant mentions and ranked them by lexical relevance, recency, and emotional weight. "
+                "Because the same family term appears in different contexts, I would treat the result as a merged view "
+                "instead of a single fact."
+            )
+        else:
+            answer = "I did not find strong matching evidence for that family term in the indexed chunks."
+        if contradiction["has_contradiction"]:
+            answer += " Contradictory signals were flagged, so the safest answer should preserve the uncertainty."
+        else:
+            answer += " No direct contradiction was flagged in the top-ranked chunks, but multiple contexts are still kept separate."
+        answer += "\n\nTop evidence:\n" + "\n".join(evidence_lines)
+
+        return {
+            "answer": answer,
+            "retrieval": {"topics": hits["topics"], "chunks": [item[3] for item in selected]},
+            "persona": self.index["persona"],
+            "conflict_resolution": {
+                "query_terms": terms,
+                "ranking_formula": "tf-idf relevance + 0.25*recency + 0.20*emotional_weight + term boost",
+                "contradiction": contradiction,
+            },
+        }
+
 
 def render_persona_items(items: list[dict[str, Any]]) -> str:
     if not items:
@@ -413,6 +733,46 @@ def render_persona_items(items: list[dict[str, Any]]) -> str:
         tail = f" Evidence: \"{evidence[0]}\"" if evidence else ""
         rendered.append(f"{item['label']} (count {item['count']}).{tail}")
     return " ".join(rendered)
+
+
+def emotional_weight(text: str) -> float:
+    tokens = tokenize(text)
+    if not tokens:
+        return 0.0
+    emotional = sum(1 for token in tokens if token in EMOTIONAL_WORDS)
+    punctuation = min(text.count("!") + text.count("?"), 10) / 10
+    return min(1.0, (emotional / len(tokens)) * 8 + punctuation * 0.25)
+
+
+def detect_contradictions(texts: list[str], terms: list[str]) -> dict[str, Any]:
+    positive_claims = []
+    negative_claims = []
+    other_claims = []
+    negation_re = re.compile(r"\b(no|not|never|don't|dont|didn't|didnt|without|no longer|used to)\b", re.I)
+    strong_positive_re = re.compile(r"\b(love|close|support|best|great|happy|glad|miss)\b", re.I)
+    strong_negative_re = re.compile(r"\b(hate|avoid|argue|angry|upset|hard|difficult|not close|no contact)\b", re.I)
+
+    for text in texts:
+        sentences = re.split(r"(?<=[.!?])\s+", text)
+        for sentence in sentences:
+            if not any(re.search(rf"\b{re.escape(term)}\b", sentence, re.I) for term in terms):
+                continue
+            compact = sentence.strip()
+            if negation_re.search(compact) or strong_negative_re.search(compact):
+                negative_claims.append(compact)
+            elif strong_positive_re.search(compact):
+                positive_claims.append(compact)
+            else:
+                other_claims.append(compact)
+
+    has_contradiction = bool(positive_claims and negative_claims)
+    return {
+        "has_contradiction": has_contradiction,
+        "positive_or_supportive_claims": positive_claims[:5],
+        "negative_or_negated_claims": negative_claims[:5],
+        "neutral_claims": other_claims[:5],
+        "note": "Contradiction is heuristic: opposite emotional/negated claims around the same query term are flagged for human-readable merging.",
+    }
 
 
 def write_json(path: Path, data: Any) -> None:
@@ -437,6 +797,8 @@ def build_index(args: argparse.Namespace) -> dict[str, Any]:
     hundred = build_hundred_checkpoints(messages)
     chunks = build_chunks(messages)
     persona = extract_persona(messages)
+    persona_drift = build_persona_drift(messages)
+    intent_model = train_intent_classifier(messages)
     index = {
         "source_csv": str(csv_path),
         "message_count": len(messages),
@@ -446,11 +808,15 @@ def build_index(args: argparse.Namespace) -> dict[str, Any]:
         "hundred_checkpoints": hundred,
         "chunks": chunks,
         "persona": persona,
+        "persona_drift": persona_drift,
+        "intent_model": intent_model,
     }
     write_json(DATA_DIR / "topic_checkpoints.json", topics)
     write_json(DATA_DIR / "hundred_checkpoints.json", hundred)
     write_json(DATA_DIR / "chunks.json", chunks)
     write_json(DATA_DIR / "persona.json", persona)
+    write_json(DATA_DIR / "persona_drift.json", persona_drift)
+    write_json(DATA_DIR / "intent_model.json", intent_model)
     write_json(DEFAULT_INDEX, index)
     return index
 
@@ -502,6 +868,9 @@ HTML_PAGE = """<!doctype html>
       <button data-q="What kind of person is this user?">What kind of person?</button>
       <button data-q="What are their habits?">Habits</button>
       <button data-q="How do they talk?">Communication style</button>
+      <button data-q="Show persona drift timeline">Drift timeline</button>
+      <button data-q="Did I mention anything about my sister?">Conflict RAG</button>
+      <button data-q="classify: remind me to call my sister tomorrow">Intent</button>
     </div>
     <form class="ask" id="form">
       <input id="query" value="What kind of person is this user?" autocomplete="off">
@@ -572,6 +941,8 @@ def make_handler(engine: RagEngine) -> type[BaseHTTPRequestHandler]:
                         "message_count": engine.index["message_count"],
                         "topic_count": engine.index["topic_count"],
                         "chunk_count": engine.index["chunk_count"],
+                        "drift_days": len(engine.index.get("persona_drift", [])),
+                        "intent_labels": engine.index.get("intent_model", {}).get("labels", INTENT_LABELS),
                     }
                 )
             elif parsed.path == "/api/ask":
@@ -579,6 +950,11 @@ def make_handler(engine: RagEngine) -> type[BaseHTTPRequestHandler]:
                 self.send_json(engine.answer(q))
             elif parsed.path == "/api/persona":
                 self.send_json(engine.index["persona"])
+            elif parsed.path == "/api/drift":
+                self.send_json(engine.index.get("persona_drift", []))
+            elif parsed.path == "/api/intent":
+                text = parse_qs(parsed.query).get("text", [""])[0]
+                self.send_json(engine.intent_classifier.predict(text))
             else:
                 self.send_error(404, html.escape(parsed.path))
 

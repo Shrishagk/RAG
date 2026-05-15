@@ -12,6 +12,9 @@ It uses only Python standard library modules. No OpenAI API or hosted LLM is req
 - Creates independent 100-message checkpoints.
 - Builds message chunks for retrieval.
 - Builds a structured persona JSON from actual `User 1` evidence.
+- Builds an adaptive persona drift timeline by day.
+- Trains a lightweight offline intent classifier for five intent classes.
+- Resolves hard family/person queries with recency, emotional weight, and contradiction flags.
 - Serves a simple chatbot UI that answers using topic summaries, chunks, and persona data.
 
 ## Quick Start
@@ -43,6 +46,8 @@ The build step writes:
 - `data/hundred_checkpoints.json` - summaries for every 100 messages
 - `data/chunks.json` - retrievable chronological message chunks
 - `data/persona.json` - structured persona with evidence
+- `data/persona_drift.json` - day-wise mood/tone drift timeline
+- `data/intent_model.json` - offline Naive Bayes intent classifier
 - `data/index.json` - complete app index
 
 ## How Topic Changes Are Detected
@@ -91,6 +96,71 @@ Persona extraction only uses `User 1` messages. It looks for direct signals such
 
 Each structured item includes evidence examples and counts. The extractor avoids unsupported guesses by leaving categories sparse when signals are not present.
 
+## L2: Adaptive Persona Drift
+
+The drift engine reads the same chronological stream and groups `User 1` messages by CSV row/day. For each day it computes:
+
+- sentiment score from positive and negative emotional terms
+- question rate and exclamation rate
+- casual/formal markers
+- emotional word density
+- top keywords and possible trigger type
+
+A drift is recorded when the tone label changes, sentiment moves meaningfully, or the main keywords change. Triggers are labeled as `person`, `event`, `topic`, or `tone` using direct text signals such as family mentions, work/school/event terms, and newly dominant keywords.
+
+Output file:
+
+```text
+data/persona_drift.json
+```
+
+Example chatbot question:
+
+```text
+Show persona drift timeline
+```
+
+## L2: Offline Intent Classifier
+
+The intent classifier is a compact Multinomial Naive Bayes model stored as JSON. It is trained locally from deterministic weak labels in the conversation data and does not call OpenAI, Gemini, or any external API.
+
+Supported classes:
+
+- `reminder`
+- `emotional-support`
+- `action-item`
+- `small-talk`
+- `unknown`
+
+Inference is a small token-count calculation and is designed to run on CPU in under 200ms per message.
+
+Example:
+
+```bash
+python app.py --ask "classify: remind me to call my sister tomorrow"
+```
+
+## L2: Conflict Resolution in RAG
+
+For questions like:
+
+```text
+Did I mention anything about my sister?
+```
+
+the resolver retrieves relevant topic summaries and message chunks, then ranks chunks with:
+
+```text
+TF-IDF relevance + recency boost + emotional weight + exact term boost
+```
+
+It also scans the selected evidence for contradiction signals, such as positive/supportive claims and negative or negated claims around the same person/family term. If conflicts are found, the answer preserves uncertainty instead of collapsing everything into one unsupported fact.
+
+## L2 Written Artifacts
+
+- `SYSTEM_DESIGN.md` - one-page sync architecture with diagram and conflict policy
+- `SELF_EVALUATION.md` - implementation checklist, limitations, and demo prompts
+
 ## CLI Examples
 
 Ask from the terminal:
@@ -99,6 +169,9 @@ Ask from the terminal:
 python app.py --ask "What kind of person is this user?"
 python app.py --ask "What are their habits?"
 python app.py --ask "How do they talk?"
+python app.py --ask "Show persona drift timeline"
+python app.py --ask "Did I mention anything about my sister?"
+python app.py --ask "classify: remind me to call my sister tomorrow"
 ```
 
 Tune topic splitting:

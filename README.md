@@ -21,8 +21,12 @@ It uses only Python standard library modules. No OpenAI API or hosted LLM is req
 
 ```bash
 cd conversation-rag-persona
-python app.py --csv "C:\Users\shris\Downloads\conversations.csv" --build
-python app.py --csv "C:\Users\shris\Downloads\conversations.csv" --serve
+
+# Build the index
+python app.py --csv ./data/conversations.csv --build
+
+# Start the server
+python app.py --csv ./data/conversations.csv --serve
 ```
 
 Open:
@@ -35,6 +39,12 @@ If you already built the index once, start only the server:
 
 ```bash
 python app.py --serve
+```
+
+You can also provide any custom CSV path:
+
+```bash
+python app.py --csv path/to/conversations.csv --build
 ```
 
 ## Outputs
@@ -192,30 +202,3 @@ python app.py --serve --host 0.0.0.0 --port $PORT
 
 For deployment, upload the repo with the generated `data/index.json`, or run the build command during deploy with the CSV available in the project.
 
-## Submission Checklist
-
-Add these links before submitting:
-
-- GitHub repo: `PASTE_GITHUB_REPO_LINK_HERE`
-- Live chatbot URL: `PASTE_CLOUD_URL_HERE`
-- Video demo: `PASTE_LOOM_LINK_HERE`
-
-Recommended deployment flow:
-
-1. Push this folder to GitHub.
-2. Make sure `data/index.json` is included in the repo so the server can start without rebuilding the CSV in cloud.
-3. Create a new Web Service on Render or Railway.
-4. Connect the GitHub repo.
-5. Use this start command:
-
-```bash
-python app.py --serve --host 0.0.0.0 --port $PORT
-```
-
-6. Open the generated public URL and test:
-
-```text
-What kind of person is this user?
-What are their habits?
-How do they talk?
-```
